@@ -39,7 +39,8 @@ export const SpellsComp = (props) => {
     
     return ( <>
         <Search onChange={searchSpells}/>
-        <SpellDisplay spellCollec={searchedSpell} />
+        {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
+        {/* <SpellDisplay spellCollec={searchedSpell} /> */}
         {/* <h1>Charms!</h1>
         {renderCharms(spells)} */}
     </>)

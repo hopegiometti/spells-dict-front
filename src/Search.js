@@ -1,25 +1,29 @@
 import React from 'react'
+import styled from 'styled-components'
 
-// class Search extends React.Component {
+export const StyledDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 300px;
+    padding-bottom: 300px;
+`
 
-//   render() {
-//     return ( <div>
-//         <div className="ui search">
-//           <div className="ui icon input">
-//             <input className="prompt" onChange={this.props.onChange} />
-//             <i className="search icon" />
-//           </div>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
+export const StyledInput = styled.input`
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 5px;
+    width: 150px;
+    box-sizing: border-box;
+`;
 
-// export default Search
 
 export const Search = (props) => {
     return( <div>
-        <input onChange={props.onChange}/>
+        <StyledDiv>
+            <StyledInput onChange={props.onChange}/>
+        </StyledDiv>
     </div>)
 }
 
