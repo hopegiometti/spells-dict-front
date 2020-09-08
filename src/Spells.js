@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import Search from './Search'
+import SpellDisplay from './SpellDisplay'
 
 export const SpellsComp = (props) => {
     const [spells, setSpells] = useState([])
+    const [searchStr, setSearchStr] = useState("")
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
@@ -27,10 +30,18 @@ export const SpellsComp = (props) => {
         return allCharms
     }
 
+    const searchSpells = (event) => {
+        setSearchStr(event.target.value)
+    }
+
+    let searchedSpell = spells.filter(spell => spell.spell.toLowerCase().includes(searchStr) || spell.spell.includes(searchStr))
+
     
     return ( <>
-        <h1>Charms!</h1>
-        {renderCharms(spells)}
+        <Search onChange={searchSpells}/>
+        <SpellDisplay spellCollec={searchedSpell} />
+        {/* <h1>Charms!</h1>
+        {renderCharms(spells)} */}
     </>)
 }
 
