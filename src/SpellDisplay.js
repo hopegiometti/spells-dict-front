@@ -1,10 +1,18 @@
 import React from 'react'
 import SpellDef from './SpellDef'
+import styled from 'styled-components'
+
+export const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
 
 export const SpellDisplay = (props) => {
-    return( <div>
+    return( <StyledDiv>
         {props.spellCollec.map(spell => <SpellDef spell={spell}/>)}
-    </div> )
+    </StyledDiv> )
 }
 
 export default SpellDisplay

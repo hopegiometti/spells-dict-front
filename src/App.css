@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: ParryHotter;
+  src: url(https://www.1001fonts.com/parry-hotter-font.html)
+}
+
+@font-face {
+  font-family: MagicSchool;
+  src: url(https://www.1001fonts.com/magic-school-font.html)
+}
+
+@font-face {
+  font-family: Lumos;
+  src: url(https://www.1001fonts.com/lumos-font.html)
+}

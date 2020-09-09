@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Search from './Search'
 import SpellDisplay from './SpellDisplay'
+import styled from 'styled-components'
+
+export const StyledHOne = styled.h1`
+    text-align: center;
+    padding-top: 200px;
+    font-family: ParryHotter;
+    font-size: 400%;
+`
+
 
 export const SpellsComp = (props) => {
     const [spells, setSpells] = useState([])
@@ -38,7 +47,8 @@ export const SpellsComp = (props) => {
 
     
     return ( <>
-        <Search onChange={searchSpells}/>
+        <StyledHOne>The Standard Website of Spells</StyledHOne>
+        <Search onChange={searchSpells} />
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
         {/* <SpellDisplay spellCollec={searchedSpell} /> */}
         {/* <h1>Charms!</h1>
