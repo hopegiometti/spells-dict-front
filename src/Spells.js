@@ -59,7 +59,7 @@ export const SpellsComp = (props) => {
 
     const browseSpells = (allSpells) => {
         // console.log("clicked")
-        setDisplaySpells(true)
+        setDisplaySpells(!showAllSpells)
     }
 
     const searchSpells = (event) => {
