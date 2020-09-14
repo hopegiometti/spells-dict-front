@@ -5,8 +5,9 @@ export const StyledDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    padding-top: 25px;
+    position: fixed;
+    top: 0;
+    padding-left: 150px;
 `
 
 export const StyledInput = styled.input`
@@ -28,3 +29,5 @@ export const Search = (props) => {
 }
 
 export default Search
+
+// padding-top: 25px;
