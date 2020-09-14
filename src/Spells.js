@@ -4,6 +4,7 @@ import SpellDisplay from './SpellDisplay'
 import styled from 'styled-components'
 import BrowseSpells from './BrowseSpells'
 
+
 export const StyledHOne = styled.h1`
     text-align: center;
     padding-top: 200px;
@@ -32,6 +33,7 @@ export const SpellsComp = (props) => {
     const [spells, setSpells] = useState([])
     const [searchStr, setSearchStr] = useState("")
     const [showAllSpells, setDisplaySpells] = useState(false)
+    const [renderCharmsOn, setRenderCharms] = useState(false)
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
@@ -45,7 +47,14 @@ export const SpellsComp = (props) => {
         fetchSpells()
     }, [])
 
+    const renderCharmsQ = () => {
+        console.log("clicked")
+        setRenderCharms(!renderCharmsOn)
+        setDisplaySpells(false)
+    }
+
     const renderCharms = (spells) => {
+        console.log("rendering")
         let allCharms = []
 
         spells.map((spell) => {
@@ -74,11 +83,9 @@ export const SpellsComp = (props) => {
         <Search onChange={searchSpells} />
         <StyledDiv><StyledButton onClick={browseSpells}>Browse</StyledButton></StyledDiv>
         {/* <StyledHOne>The Standard Website of Spells</StyledHOne> */}
-        {showAllSpells ? <BrowseSpells allSpells={spells}/> : <StyledHOne>The Standard Website of Spells</StyledHOne>}
+        {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : <StyledHOne>The Standard Website of Spells</StyledHOne>}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
-        {/* <SpellDisplay spellCollec={searchedSpell} /> */}
-        {/* <h1>Charms!</h1>
-        {renderCharms(spells)} */}
+        {renderCharmsOn ? renderCharms(spells) : null}
     </>)
 }
 
