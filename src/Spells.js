@@ -61,11 +61,11 @@ export const SpellsComp = (props) => {
 
         spells.map((spell) => {
             if (spell.type === "Charm") {
-                allCharms.push(<h3>{spell.spell}</h3>)
+                allCharms.push(spell)
             }
         })
-
-        return allCharms
+        // console.log(allCharms)
+        return <BrowseSpells allSpells={allCharms} />
     }
 
     const browseSpells = (allSpells) => {
@@ -86,7 +86,8 @@ export const SpellsComp = (props) => {
         <Search onChange={searchSpells} />
         <StyledDiv><StyledButton onClick={browseSpells}>Browse</StyledButton></StyledDiv>
         {/* <StyledHOne>The Standard Website of Spells</StyledHOne> */}
-        {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : <StyledHOne>The Standard Website of Spells</StyledHOne>}
+        <StyledHOne>The Standard Website of Spells</StyledHOne>
+        {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : null}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
         {showSortedSpells ? renderCharms(spells) : null}
     </>)

@@ -26,7 +26,8 @@ export const StyledHOne = styled.h1`
 
 export const BrowseSpells = (props) => {
     return(<> 
-    <StyledHOne>All Spells</StyledHOne>
+    {/* <StyledHOne>All Spells</StyledHOne> */}
+    {console.log(props.allSpells)}
     <SpellSortBar allSpells={props.allSpells} renderCharmsQ={props.renderCharmsQ}/>
     <StyledBox>
         {props.allSpells.map(spell => <EachSpell key={spell._id} spellName={spell.spell} effect={spell.effect} type={spell.type}/>)}
