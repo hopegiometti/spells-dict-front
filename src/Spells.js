@@ -34,6 +34,7 @@ export const SpellsComp = (props) => {
     const [searchStr, setSearchStr] = useState("")
     const [showAllSpells, setDisplaySpells] = useState(false)
     const [renderCharmsOn, setRenderCharms] = useState(false)
+    const [showSortedSpells, setShowSortedSpells] = useState(false)
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
@@ -49,6 +50,7 @@ export const SpellsComp = (props) => {
 
     const renderCharmsQ = () => {
         console.log("clicked")
+        setShowSortedSpells(true)
         setRenderCharms(!renderCharmsOn)
         setDisplaySpells(false)
     }
@@ -68,6 +70,7 @@ export const SpellsComp = (props) => {
 
     const browseSpells = (allSpells) => {
         // console.log("clicked")
+        setShowSortedSpells(false)
         setDisplaySpells(!showAllSpells)
     }
 
@@ -85,7 +88,7 @@ export const SpellsComp = (props) => {
         {/* <StyledHOne>The Standard Website of Spells</StyledHOne> */}
         {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : <StyledHOne>The Standard Website of Spells</StyledHOne>}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
-        {renderCharmsOn ? renderCharms(spells) : null}
+        {showSortedSpells ? renderCharms(spells) : null}
     </>)
 }
 
