@@ -30,16 +30,18 @@ export const StyledDiv = styled.div`
 
 
 export const SpellsComp = (props) => {
-    const [spells, setSpells] = useState([])
+    const [fetchedSpells, setFetchedSpells] = useState([])
     const [searchStr, setSearchStr] = useState("")
     const [showAllSpells, setDisplaySpells] = useState(false)
     const [renderCharmsOn, setRenderCharms] = useState(false)
     const [showSortedSpells, setShowSortedSpells] = useState(false)
+    const [spellType, setSpellType] = useState("")
+    const [spells, setSpells] = useState(fetchedSpells)
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
         const  spells = await apiCall.json()
-        setSpells(spells)
+        setFetchedSpells(spells)
     }
 
     console.log(spells)
@@ -48,24 +50,40 @@ export const SpellsComp = (props) => {
         fetchSpells()
     }, [])
 
-    const renderCharmsQ = () => {
-        console.log("clicked")
-        setShowSortedSpells(true)
-        setRenderCharms(!renderCharmsOn)
-        setDisplaySpells(false)
-    }
-
-    const renderCharms = (spells) => {
-        console.log("rendering")
-        let allCharms = []
-
-        spells.map((spell) => {
-            if (spell.type === "Charm") {
-                allCharms.push(spell)
+    const renderCharmsQ = (type) => {
+        if (showSortedSpells === false) {
+            setShowSortedSpells(true) 
+        }
+        // if (showAllSpells === true) {
+        //     setDisplaySpells(false)
+        // }
+        console.log(type)
+        let sortedSpells = []
+        // setSpellType(type)
+        fetchedSpells.map((spell) => {
+            if (spell.type === type) {
+                sortedSpells.push(spell)
+                
             }
         })
-        // console.log(allCharms)
-        return <BrowseSpells allSpells={allCharms} />
+        // console.log(sortedSpells)
+        setSpells(sortedSpells)
+    }
+
+
+    const renderCharms = (spells) => {
+        let sortedSpells = []
+        console.log(sortedSpells)
+
+        spells.map((spell) => {
+            if (spell.type === spellType) {
+                sortedSpells.push(spell)
+                
+            }
+        })
+        // console.log(sortedSpells)
+        setSpells(sortedSpells)
+        // return <BrowseSpells allSpells={sortedSpells} />
     }
 
     const browseSpells = (allSpells) => {
@@ -89,7 +107,7 @@ export const SpellsComp = (props) => {
         <StyledHOne>The Standard Website of Spells</StyledHOne>
         {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : null}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
-        {showSortedSpells ? renderCharms(spells) : null}
+        {/* {showSortedSpells ? renderCharms(spells) : null} */}
     </>)
 }
 
