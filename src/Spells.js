@@ -87,7 +87,7 @@ export const SpellsComp = (props) => {
     }
 
     const browseSpells = (allSpells) => {
-        // console.log("clicked")
+        console.log(fetchedSpells.map(spell => spell.type))
         setShowSortedSpells(false)
         setDisplaySpells(!showAllSpells)
     }
