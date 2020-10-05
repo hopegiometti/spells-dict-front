@@ -7,7 +7,7 @@ export const StyledDiv = styled.div`
     justify-content: center;
     position: fixed;
     top: 0;
-    padding-left: 150px;
+    padding-left: 250px;
 `
 
 export const StyledInput = styled.input`

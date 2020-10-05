@@ -37,6 +37,7 @@ export const SpellsComp = (props) => {
     const [showSortedSpells, setShowSortedSpells] = useState(false)
     const [spellType, setSpellType] = useState("")
     const [spells, setSpells] = useState(fetchedSpells)
+    const [randomSpell, setRandomSpell] = useState([])
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
@@ -101,16 +102,28 @@ export const SpellsComp = (props) => {
         setSearchStr(event.target.value)
     }
 
+    const showRandom = () => {
+        setSpells(fetchedSpells)
+        setDisplaySpells(false)
+        let randomSpell = spells[Math.floor(Math.random() * spells.length)]
+        console.log(randomSpell)
+        setRandomSpell(randomSpell)
+    }
+
     let searchedSpell = spells.filter(spell => spell.spell.toLowerCase().includes(searchStr) || spell.spell.includes(searchStr))
 
     
     return ( <>
         <Search onChange={searchSpells} />
-        <StyledDiv><StyledButton onClick={browseSpells}>Browse</StyledButton></StyledDiv>
+        <StyledDiv>
+            <StyledButton onClick={browseSpells}>Browse</StyledButton>
+            <StyledButton onClick={showRandom}>Random</StyledButton>
+        </StyledDiv>
         {/* <StyledHOne>The Standard Website of Spells</StyledHOne> */}
         <StyledHOne>The Standard Website of Spells</StyledHOne>
         {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : null}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
+        {randomSpell ? <SpellDisplay spellCollec={[randomSpell]}/> : <></>}
         {/* {showSortedSpells ? renderCharms(spells) : null} */}
     </>)
 }
