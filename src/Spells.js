@@ -37,7 +37,7 @@ export const SpellsComp = (props) => {
     const [showSortedSpells, setShowSortedSpells] = useState(false)
     const [spellType, setSpellType] = useState("")
     const [spells, setSpells] = useState(fetchedSpells)
-    const [randomSpell, setRandomSpell] = useState([])
+    const [randomSpell, setRandomSpell] = useState()
 
     const fetchSpells = async () => {
         const apiCall = await fetch("http://127.0.0.1:5000/")
@@ -45,7 +45,7 @@ export const SpellsComp = (props) => {
         setFetchedSpells(spells)
     }
 
-    console.log(spells)
+    // console.log(spells)
 
     useEffect(() => {
         fetchSpells()
@@ -56,7 +56,6 @@ export const SpellsComp = (props) => {
             setShowSortedSpells(true) 
         }
         
-        console.log(type)
         let sortedSpells = []
         if (type === "All") {
             fetchedSpells.map((spell) => {
@@ -74,24 +73,7 @@ export const SpellsComp = (props) => {
         setSpells(sortedSpells)
     }
 
-
-    const renderCharms = (spells) => {
-        let sortedSpells = []
-        console.log(sortedSpells)
-
-        spells.map((spell) => {
-            if (spell.type === spellType) {
-                sortedSpells.push(spell)
-                
-            }
-        })
-        // console.log(sortedSpells)
-        setSpells(sortedSpells)
-        // return <BrowseSpells allSpells={sortedSpells} />
-    }
-
     const browseSpells = (allSpells) => {
-        console.log(fetchedSpells.map(spell => spell.type))
         setShowSortedSpells(false)
         setDisplaySpells(!showAllSpells)
     }
@@ -106,7 +88,6 @@ export const SpellsComp = (props) => {
         setSpells(fetchedSpells)
         setDisplaySpells(false)
         let randomSpell = spells[Math.floor(Math.random() * spells.length)]
-        console.log(randomSpell)
         setRandomSpell(randomSpell)
     }
 
@@ -119,12 +100,11 @@ export const SpellsComp = (props) => {
             <StyledButton onClick={browseSpells}>Browse</StyledButton>
             <StyledButton onClick={showRandom}>Random</StyledButton>
         </StyledDiv>
-        {/* <StyledHOne>The Standard Website of Spells</StyledHOne> */}
         <StyledHOne>The Standard Website of Spells</StyledHOne>
         {showAllSpells ? <BrowseSpells allSpells={spells} renderCharmsQ={renderCharmsQ}/> : null}
         {searchStr.length > 0 ? <SpellDisplay spellCollec={searchedSpell} /> : <></>}
+        {console.log(randomSpell)}
         {randomSpell ? <SpellDisplay spellCollec={[randomSpell]}/> : <></>}
-        {/* {showSortedSpells ? renderCharms(spells) : null} */}
     </>)
 }
 
