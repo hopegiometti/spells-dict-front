@@ -23,11 +23,8 @@ export const Search = (props) => {
     return( <div>
         <StyledDiv>
             <StyledInput onChange={props.onChange} placeholder="start typing to search spells..."/>
-            {/* <input type="submit" value="submit" onSubmit={props.handleSubmit}/> */}
         </StyledDiv>
     </div>)
 }
 
 export default Search
-
-// padding-top: 25px;

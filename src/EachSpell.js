@@ -21,7 +21,6 @@ export const EachSpell = (props) => {
             <h2>Effect: {props.effect}</h2>
             <h3>Type: {props.type}</h3>
         </StyledDiv>
-        {console.log(props)}  
     </div> )
 }
 
