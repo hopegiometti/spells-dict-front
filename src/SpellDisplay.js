@@ -12,6 +12,7 @@ export const StyledDiv = styled.div`
 export const SpellDisplay = (props) => {
     return( <StyledDiv>
         {props.spellCollec.map(spell => <SpellDef spell={spell}/>)}
+        {console.log(props.spellCollec)}
     </StyledDiv> )
 }
 

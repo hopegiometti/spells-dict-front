@@ -96,6 +96,7 @@ export const SpellsComp = (props) => {
     }
 
     const searchSpells = (event) => {
+        setSpells(fetchedSpells)
         setDisplaySpells(false)
         setSearchStr(event.target.value)
     }
