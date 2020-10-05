@@ -20,6 +20,7 @@ export const StyledButton = styled.button`
 
 export const SpellSortBar = (props) => {
     return( <StyledDiv>
+        <StyledButton onClick={() => props.renderCharmsQ("All")}>All</StyledButton>
         <StyledButton onClick={() => props.renderCharmsQ("Charm")}>Charms</StyledButton>
         <StyledButton onClick={() => props.renderCharmsQ("Jinx")}>Jinxes</StyledButton>
         <StyledButton onClick={() => props.renderCharmsQ("Hex")}>Hexes</StyledButton>

@@ -54,19 +54,22 @@ export const SpellsComp = (props) => {
         if (showSortedSpells === false) {
             setShowSortedSpells(true) 
         }
-        // if (showAllSpells === true) {
-        //     setDisplaySpells(false)
-        // }
+        
         console.log(type)
         let sortedSpells = []
-        // setSpellType(type)
-        fetchedSpells.map((spell) => {
-            if (spell.type === type) {
+        if (type === "All") {
+            fetchedSpells.map((spell) => {
                 sortedSpells.push(spell)
-                
-            }
-        })
-        // console.log(sortedSpells)
+            })
+        } else {
+            fetchedSpells.map((spell) => {
+                if (spell.type === type) {
+                    sortedSpells.push(spell)
+                    
+                }
+            })
+        }
+        
         setSpells(sortedSpells)
     }
 
